@@ -1,0 +1,45 @@
+NAME
+    App::pmodinfo - Perl module info command line.
+
+VERSION
+    version 0.01
+
+SYNOPSIS
+        $ pmodinfo Scalar::Util strict
+        Scalar::Util is installed with version 1.23.
+        strict is installed with version 1.04.
+
+        $ pmodinfo --full Redis::Dump
+        Redis::Dump is installed with version 0.013.
+        filename   : /Users/thiago/perl5/perlbrew/perls/perl-5.14.0/lib/site_perl/5.14.0/Redis/Dump.pm
+          ctime    : 2011-07-05 19:56:54
+        POD content: yes
+
+DESCRIPTION
+        pmodinfo extracts information from the perl modules given the command
+        line.
+
+        I don't want to use more "perl -MModule\ 999".
+
+OPTIONS
+        -v --version
+
+        -f --full
+
+        -h --hash
+
+SEE ALSO
+    Module::Metadata, Getopt::Long
+
+ACKNOWLEDGE
+    cpanminus, for the check_module function. :-)
+
+AUTHOR
+    Thiago Rondon <thiago@nsms.com.br>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2011 by Thiago Rondon.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+

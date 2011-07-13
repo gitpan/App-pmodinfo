@@ -1,0 +1,47 @@
+#!/usr/bin/env perl
+
+package pmodinfo;
+
+use strict;
+use FindBin qw($Bin);
+use lib "$Bin/../lib", "$Bin/lib";
+use App::pmodinfo;
+
+our $VERSION = '0.01'; # VERSION
+
+unless (caller) {
+    my $app = App::pmodinfo->new;
+    $app->parse_options(@ARGV);
+    $app->run or exit(1);
+}
+
+
+
+=pod
+
+=head1 NAME
+
+pmodinfo
+
+=head1 VERSION
+
+version 0.01
+
+=head1 AUTHOR
+
+Thiago Rondon <thiago@nsms.com.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2011 by Thiago Rondon.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
+
+# Abstract: Perl module info command line
+
