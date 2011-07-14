@@ -2,7 +2,7 @@ NAME
     App::pmodinfo - Perl module info command line.
 
 VERSION
-    version 0.04
+    version 0.05
 
 SYNOPSIS
         $ pmodinfo Scalar::Util strict
@@ -11,6 +11,7 @@ SYNOPSIS
 
         $ pmodinfo --full Redis::Dump
         Redis::Dump is installed with version 0.013.
+        cpan page  : http://search.cpan.org/dist/Redis-Dump
         filename   : /Users/thiago/perl5/perlbrew/perls/perl-5.14.0/lib/site_perl/5.14.0/Redis/Dump.pm
           ctime    : 2011-07-05 19:56:54
         POD content: yes

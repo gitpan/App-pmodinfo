@@ -7,7 +7,7 @@ use FindBin qw($Bin);
 use lib "$Bin/../lib", "$Bin/lib";
 use App::pmodinfo;
 
-our $VERSION = '0.04'; # VERSION
+our $VERSION = '0.05'; # VERSION
 
 unless (caller) {
     my $app = App::pmodinfo->new;
@@ -25,7 +25,11 @@ pmodinfo
 
 =head1 VERSION
 
-version 0.04
+version 0.05
+
+=head1 DESCRIPTION
+
+See L<App::pmodinfo> for more information
 
 =head1 AUTHOR
 
@@ -44,4 +48,5 @@ the same terms as the Perl 5 programming language system itself.
 __END__
 
 # Abstract: Perl module info command line
+
 

@@ -10,7 +10,7 @@ use Config;
 use Parse::CPAN::Meta;
 use LWP::Simple;
 
-our $VERSION = '0.04'; # VERSION
+our $VERSION = '0.05'; # VERSION
 
 sub new {
     my $class = shift;
@@ -39,7 +39,7 @@ sub parse_options {
 
 sub show_version {
     my $self = shift;
-    no strict; # Dist::Zilla, VERSION.
+    no strict;    # Dist::Zilla, VERSION.
     print "pmodinfo version $VERSION\n";
     exit 1;
 }
@@ -105,6 +105,12 @@ sub show_modules_hash {
     print "\t'$module' => $version,\n" if $install;
 }
 
+sub cpanpage {
+    my ( $self, $module ) = @_;
+    $module =~ s/::/-/g;
+    return "http://search.cpan.org/dist/$module";
+}
+
 sub show_modules {
     my ( $self, $module ) = @_;
     my ( $install, $meta, $deprecated ) = $self->check_module( $module, 0 );
@@ -117,8 +123,9 @@ sub show_modules {
 
     my $stat  = stat $meta->filename;
     my $ctime = $self->format_date( $stat->[10] );
-    $self->print_block( 'filename   ', $meta->filename, $self->{full} );
-    $self->print_block( '  ctime    ', $ctime,          $self->{full} );
+    $self->print_block( 'cpan page  ', $self->cpanpage($module), $self->{full} );
+    $self->print_block( 'filename   ', $meta->filename,          $self->{full} );
+    $self->print_block( '  ctime    ', $ctime,                   $self->{full} );
     $self->print_block(
         'POD content',
         (   $meta->contains_pod
@@ -129,23 +136,21 @@ sub show_modules {
     );
 
     my $cpan_version = $self->get_last_version_from_cpan($module);
-    $self->print_block( 'Last cpan version', $cpan_version, $self->{full},
-        $self->{cpan});
+    $self->print_block( 'Last cpan version', $cpan_version, $self->{full}, $self->{cpan} );
 }
 
 sub parse_meta_string {
-    my($self, $yaml) = @_;
-    return eval { (Parse::CPAN::Meta::Load($yaml))[0] } || undef;
+    my ( $self, $yaml ) = @_;
+    return eval { ( Parse::CPAN::Meta::Load($yaml) )[0] } || undef;
 }
 
 sub get_last_version_from_cpan {
-    my ($self, $module) = @_;
+    my ( $self, $module ) = @_;
     $module =~ s/::/-/g;
     my $meta_yml = get("http://search.cpan.org/meta/$module/META.yml");
-    my $meta = $self->parse_meta_string($meta_yml);
+    my $meta     = $self->parse_meta_string($meta_yml);
     return $meta->{version};
 }
-
 
 # check_module from cpanminus.
 sub check_module {
@@ -237,7 +242,7 @@ App::pmodinfo - Perl module info command line.
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
@@ -247,6 +252,7 @@ version 0.04
 
     $ pmodinfo --full Redis::Dump
     Redis::Dump is installed with version 0.013.
+    cpan page  : http://search.cpan.org/dist/Redis-Dump
     filename   : /Users/thiago/perl5/perlbrew/perls/perl-5.14.0/lib/site_perl/5.14.0/Redis/Dump.pm
       ctime    : 2011-07-05 19:56:54
     POD content: yes
