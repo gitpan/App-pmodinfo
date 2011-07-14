@@ -10,7 +10,7 @@ use Config;
 use Parse::CPAN::Meta;
 use LWP::Simple;
 
-our $VERSION = '0.05'; # VERSION
+our $VERSION = '0.06'; # VERSION
 
 sub new {
     my $class = shift;
@@ -135,8 +135,10 @@ sub show_modules {
         $self->{full}
     );
 
-    my $cpan_version = $self->get_last_version_from_cpan($module);
-    $self->print_block( 'Last cpan version', $cpan_version, $self->{full}, $self->{cpan} );
+    if ( $self->{full} or $self->{cpan} ) {
+        my $cpan_version = $self->get_last_version_from_cpan($module);
+        $self->print_block( 'Last cpan version', $cpan_version, 1 );
+    }
 }
 
 sub parse_meta_string {
@@ -242,7 +244,7 @@ App::pmodinfo - Perl module info command line.
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
