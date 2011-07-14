@@ -8,7 +8,7 @@ use File::stat;
 use DateTime;
 use Config;
 
-our $VERSION = '0.01'; # VERSION
+our $VERSION = '0.02'; # VERSION
 
 sub new {
     my $class = shift;
@@ -36,7 +36,8 @@ sub parse_options {
 
 sub show_version {
     my $self = shift;
-    print "pmodinfo version VERSION\n";
+    no strict; # Dist::Zilla, VERSION.
+    print "pmodinfo version $VERSION\n";
     exit 1;
 }
 
@@ -214,7 +215,7 @@ App::pmodinfo - Perl module info command line.
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -228,12 +229,19 @@ version 0.01
       ctime    : 2011-07-05 19:56:54
     POD content: yes
 
+    $ pmodinfo --hash Catalyst::Runtime DBIx::Class Data::Printer
+    {
+        'Catalyst::Runtime' => 5.80032,
+        'DBIx::Class' => 0.08192,
+        'Data::Printer' => 0.21,
+    };
+
 =head1 DESCRIPTION
 
-    pmodinfo extracts information from the perl modules given the command
-    line.
+pmodinfo extracts information from the perl modules given the command
+line.
 
-    I don't want to use more "perl -MModule\ 999".
+I don't want to use more "perl -MModule\ 999".
 
 =head1 OPTIONS
 

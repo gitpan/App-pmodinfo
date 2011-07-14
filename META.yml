@@ -26,4 +26,4 @@ requires:
 resources:
   bugtracker: http://github.com/maluco/App-pmodinfo/issues
   repository: git://github.com/maluco/App-pmodinfo
-version: 0.01
+version: 0.02

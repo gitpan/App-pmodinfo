@@ -2,7 +2,7 @@ NAME
     App::pmodinfo - Perl module info command line.
 
 VERSION
-    version 0.01
+    version 0.02
 
 SYNOPSIS
         $ pmodinfo Scalar::Util strict
@@ -15,11 +15,18 @@ SYNOPSIS
           ctime    : 2011-07-05 19:56:54
         POD content: yes
 
-DESCRIPTION
-        pmodinfo extracts information from the perl modules given the command
-        line.
+        $ pmodinfo --hash Catalyst::Runtime DBIx::Class Data::Printer
+        {
+            'Catalyst::Runtime' => 5.80032,
+            'DBIx::Class' => 0.08192,
+            'Data::Printer' => 0.21,
+        };
 
-        I don't want to use more "perl -MModule\ 999".
+DESCRIPTION
+    pmodinfo extracts information from the perl modules given the command
+    line.
+
+    I don't want to use more "perl -MModule\ 999".
 
 OPTIONS
         -v --version
