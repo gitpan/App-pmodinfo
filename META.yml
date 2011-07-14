@@ -21,9 +21,11 @@ requires:
   File::stat: 0
   FindBin: 0
   Getopt::Long: 0
+  LWP::Simple: 0
   Module::CoreList: 0
   Module::Metadata: 0
+  Parse::CPAN::Meta: 0
 resources:
   bugtracker: http://github.com/maluco/App-pmodinfo/issues
   repository: git://github.com/maluco/App-pmodinfo
-version: 0.02
+version: 0.03

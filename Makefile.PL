@@ -32,10 +32,12 @@ my %WriteMakefileArgs = (
     'File::stat' => '0',
     'FindBin' => '0',
     'Getopt::Long' => '0',
+    'LWP::Simple' => '0',
     'Module::CoreList' => '0',
-    'Module::Metadata' => '0'
+    'Module::Metadata' => '0',
+    'Parse::CPAN::Meta' => '0'
   },
-  'VERSION' => '0.02',
+  'VERSION' => '0.03',
   'test' => {
     'TESTS' => 't/*.t'
   }

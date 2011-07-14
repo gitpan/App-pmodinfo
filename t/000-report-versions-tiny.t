@@ -56,8 +56,10 @@ eval { $v .= pmver('File::Temp','any version') };
 eval { $v .= pmver('File::stat','any version') };
 eval { $v .= pmver('FindBin','any version') };
 eval { $v .= pmver('Getopt::Long','any version') };
+eval { $v .= pmver('LWP::Simple','any version') };
 eval { $v .= pmver('Module::CoreList','any version') };
 eval { $v .= pmver('Module::Metadata','any version') };
+eval { $v .= pmver('Parse::CPAN::Meta','any version') };
 eval { $v .= pmver('Test::More','0.88') };
 
 

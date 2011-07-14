@@ -2,11 +2,11 @@ NAME
     App::pmodinfo - Perl module info command line.
 
 VERSION
-    version 0.02
+    version 0.03
 
 SYNOPSIS
         $ pmodinfo Scalar::Util strict
-        Scalar::Util is installed with version 1.23.
+        Scalar::Util version is 1.23.
         strict is installed with version 1.04.
 
         $ pmodinfo --full Redis::Dump
@@ -14,6 +14,7 @@ SYNOPSIS
         filename   : /Users/thiago/perl5/perlbrew/perls/perl-5.14.0/lib/site_perl/5.14.0/Redis/Dump.pm
           ctime    : 2011-07-05 19:56:54
         POD content: yes
+        Last cpan version: 0.013
 
         $ pmodinfo --hash Catalyst::Runtime DBIx::Class Data::Printer
         {
