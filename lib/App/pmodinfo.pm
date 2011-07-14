@@ -10,7 +10,7 @@ use Config;
 use Parse::CPAN::Meta;
 use LWP::Simple;
 
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 sub new {
     my $class = shift;
@@ -111,7 +111,7 @@ sub show_modules {
 
     print "$module not found" and next unless $install;
 
-    print "$module version is" . $meta->version || undef;
+    print "$module version is " . $meta->version || undef;
     print "(deprecated)" if defined($deprecated);
     print ".\n";
 
@@ -237,7 +237,7 @@ App::pmodinfo - Perl module info command line.
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 

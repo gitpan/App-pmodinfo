@@ -2,7 +2,7 @@ NAME
     App::pmodinfo - Perl module info command line.
 
 VERSION
-    version 0.03
+    version 0.04
 
 SYNOPSIS
         $ pmodinfo Scalar::Util strict
