@@ -2,7 +2,7 @@ NAME
     App::pmodinfo - Perl module info command line.
 
 VERSION
-    version 0.06
+    version 0.07
 
 SYNOPSIS
         $ pmodinfo Scalar::Util strict
@@ -24,6 +24,12 @@ SYNOPSIS
             'Data::Printer' => 0.21,
         };
 
+        $ pmodinfo -u
+        Algorithm::Diff local version: 1.1902, last version in cpan: 1.15
+        Any::Moose local version: 0.14, last version in cpan: 0.15
+        (...)
+        Do you need to update this modules now ? (y/n) [n]
+
 DESCRIPTION
     pmodinfo extracts information from the perl modules given the command
     line.
@@ -37,11 +43,15 @@ OPTIONS
 
         -h --hash
 
+        -l,--local-modules
+
+        -u,--check-updates
+
 SEE ALSO
     Module::Metadata, Getopt::Long
 
 ACKNOWLEDGE
-    cpanminus, for the check_module function. :-)
+    cpanminus, for the check_module, prompt function and inspiration. :-)
 
 AUTHOR
     Thiago Rondon <thiago@nsms.com.br>

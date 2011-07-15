@@ -29,6 +29,8 @@ my %WriteMakefileArgs = (
   'PREREQ_PM' => {
     'Config' => '0',
     'DateTime' => '0',
+    'ExtUtils::Installed' => '0',
+    'File::Which' => '0',
     'File::stat' => '0',
     'FindBin' => '0',
     'Getopt::Long' => '0',
@@ -37,7 +39,7 @@ my %WriteMakefileArgs = (
     'Module::Metadata' => '0',
     'Parse::CPAN::Meta' => '0'
   },
-  'VERSION' => '0.06',
+  'VERSION' => '0.07',
   'test' => {
     'TESTS' => 't/*.t'
   }

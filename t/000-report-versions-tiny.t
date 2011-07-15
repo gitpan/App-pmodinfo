@@ -50,9 +50,11 @@ sub pmver {
 
 eval { $v .= pmver('Config','any version') };
 eval { $v .= pmver('DateTime','any version') };
+eval { $v .= pmver('ExtUtils::Installed','any version') };
 eval { $v .= pmver('ExtUtils::MakeMaker','6.30') };
 eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::Temp','any version') };
+eval { $v .= pmver('File::Which','any version') };
 eval { $v .= pmver('File::stat','any version') };
 eval { $v .= pmver('FindBin','any version') };
 eval { $v .= pmver('Getopt::Long','any version') };

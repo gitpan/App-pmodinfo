@@ -18,6 +18,8 @@ name: App-pmodinfo
 requires:
   Config: 0
   DateTime: 0
+  ExtUtils::Installed: 0
+  File::Which: 0
   File::stat: 0
   FindBin: 0
   Getopt::Long: 0
@@ -28,4 +30,4 @@ requires:
 resources:
   bugtracker: http://github.com/maluco/App-pmodinfo/issues
   repository: git://github.com/maluco/App-pmodinfo
-version: 0.06
+version: 0.07
