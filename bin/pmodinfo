@@ -7,7 +7,7 @@ use FindBin qw($Bin);
 use lib "$Bin/../lib", "$Bin/lib";
 use App::pmodinfo;
 
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 unless (caller) {
     my $app = App::pmodinfo->new;
@@ -25,11 +25,33 @@ pmodinfo
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 DESCRIPTION
 
-See L<App::pmodinfo> for more information
+See L<App::pmodinfo> for more information.
+
+=head1 DESCRIPTION
+
+pmodinfo extracts information from the perl modules given the command
+line, usign L<Module::Metadata>, L<Module::CoreList>, L<Module::Build>,
+L<Parse::CPAN::Meta> and L<ExtUtils::Installed>.
+
+I don't want to use more "perl -MModule\ 999".
+
+=head1 OPTIONS
+
+Usage: pmodinfo [options] [Module] [...]
+
+    -v --version            Display software version
+    -f --full               Turns on the most output
+    -h --hash               Show module and version in a hash.
+    -l,--local-modules      Display all local modules
+    -u,--check-updates      Check updates, compare your local version to cpan.
+    -c,--cpan               Show the last version of module in cpan.
+
+With check-updates option, we try to use L<cpanminus> or L<cpan> to update
+modules.
 
 =head1 AUTHOR
 

@@ -12,15 +12,15 @@ use LWP::Simple;
 use ExtUtils::Installed;
 use File::Which qw(which);
 
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 sub new {
     my $class = shift;
 
     bless {
-        author => undef,
-        full   => undef,
-        hash   => undef,
+        author => 0,
+        full   => 0,
+        hash   => 0,
         @_
     }, $class;
 }
@@ -46,7 +46,7 @@ sub show_version {
     my $self = shift;
     no strict;    # Dist::Zilla, VERSION.
     print "pmodinfo version $VERSION\n";
-    exit 1;
+    exit 0;
 }
 
 sub show_help {
@@ -61,18 +61,18 @@ USAGE
     }
 
     print <<HELP;
-Usage: pmodinfo Module [...]
+Usage: pmodinfo [options] [Module] [...]
 
-Options:
-    -c,--cpan
-    -f,--full
-    -v,--version
-    -h,--hash
-    -l,--local-modules
-    -u,--check-updates
+    -v --version            Display software version
+    -f --full               Turns on the most output
+    -h --hash               Show module and version in a hash.
+    -l,--local-modules      Display all local modules
+    -u,--check-updates      Check updates, compare your local version to cpan.
+    -c,--cpan               Show the last version of module in cpan.
+
 HELP
 
-    return 1;
+    exit 0;
 }
 
 sub print_block {
@@ -122,6 +122,7 @@ sub update_modules {
     my $cpan_util;
     $cpan_util = which('cpanm') or which('cpan') or exit -1;
     system( $cpan_util, @modules );
+    exit 0;
 }
 
 sub check_installed_modules_for_update {
@@ -150,7 +151,7 @@ sub check_installed_modules_for_update {
         print "already up to date.";
     }
 
-    exit 1;
+    exit 0;
 }
 
 sub prompt {
@@ -196,7 +197,7 @@ sub show_installed_modules {
             print "(deprecated)" if defined($deprecated);
             print ".\n";
     }
-    exit 1;
+    exit 0;
 }
 
 sub installed_modules {
@@ -339,16 +340,16 @@ App::pmodinfo - Perl module info command line.
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
     $ pmodinfo Scalar::Util strict
     Scalar::Util version is 1.23.
-    strict is installed with version 1.04.
+    strict version is 1.04.
 
     $ pmodinfo --full Redis::Dump
-    Redis::Dump is installed with version 0.013.
+    Redis::Dump version is 0.013.
     cpan page  : http://search.cpan.org/dist/Redis-Dump
     filename   : /Users/thiago/perl5/perlbrew/perls/perl-5.14.0/lib/site_perl/5.14.0/Redis/Dump.pm
       ctime    : 2011-07-05 19:56:54
@@ -371,25 +372,25 @@ version 0.07
 =head1 DESCRIPTION
 
 pmodinfo extracts information from the perl modules given the command
-line.
+line, usign L<Module::Metadata>, L<Module::CoreList>, L<Module::Build>,
+L<Parse::CPAN::Meta> and L<ExtUtils::Installed>.
 
 I don't want to use more "perl -MModule\ 999".
 
-=head1 OPTIONS
+See L<pmodinfo> for more information.
 
-    -v --version
+=head1 DEVELOPMENT
 
-    -f --full
+App::modinfo is a open source project for everyone to participate. The code
+repository is located on github. Feel free to send a bug report or a pull
+request.
 
-    -h --hash
-
-    -l,--local-modules
-
-    -u,--check-updates
+L<http://www.github.com/maluco/App-pmodinfo>
 
 =head1 SEE ALSO
 
-L<Module::Metadata>, L<Getopt::Long>
+L<Module::Metadata>, L<Module::CoreList>, L<Module::Build>,
+L<Parse::CPAN::Meta>, L<ExtUtils::Installed>.
 
 =head1 ACKNOWLEDGE
 

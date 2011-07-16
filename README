@@ -2,15 +2,15 @@ NAME
     App::pmodinfo - Perl module info command line.
 
 VERSION
-    version 0.07
+    version 0.08
 
 SYNOPSIS
         $ pmodinfo Scalar::Util strict
         Scalar::Util version is 1.23.
-        strict is installed with version 1.04.
+        strict version is 1.04.
 
         $ pmodinfo --full Redis::Dump
-        Redis::Dump is installed with version 0.013.
+        Redis::Dump version is 0.013.
         cpan page  : http://search.cpan.org/dist/Redis-Dump
         filename   : /Users/thiago/perl5/perlbrew/perls/perl-5.14.0/lib/site_perl/5.14.0/Redis/Dump.pm
           ctime    : 2011-07-05 19:56:54
@@ -32,23 +32,23 @@ SYNOPSIS
 
 DESCRIPTION
     pmodinfo extracts information from the perl modules given the command
-    line.
+    line, usign Module::Metadata, Module::CoreList, Module::Build,
+    Parse::CPAN::Meta and ExtUtils::Installed.
 
     I don't want to use more "perl -MModule\ 999".
 
-OPTIONS
-        -v --version
+    See pmodinfo for more information.
 
-        -f --full
+DEVELOPMENT
+    App::modinfo is a open source project for everyone to participate. The
+    code repository is located on github. Feel free to send a bug report or
+    a pull request.
 
-        -h --hash
-
-        -l,--local-modules
-
-        -u,--check-updates
+    <http://www.github.com/maluco/App-pmodinfo>
 
 SEE ALSO
-    Module::Metadata, Getopt::Long
+    Module::Metadata, Module::CoreList, Module::Build, Parse::CPAN::Meta,
+    ExtUtils::Installed.
 
 ACKNOWLEDGE
     cpanminus, for the check_module, prompt function and inspiration. :-)
