@@ -2,33 +2,7 @@ NAME
     App::pmodinfo - Perl module info command line.
 
 VERSION
-    version 0.08
-
-SYNOPSIS
-        $ pmodinfo Scalar::Util strict
-        Scalar::Util version is 1.23.
-        strict version is 1.04.
-
-        $ pmodinfo --full Redis::Dump
-        Redis::Dump version is 0.013.
-        cpan page  : http://search.cpan.org/dist/Redis-Dump
-        filename   : /Users/thiago/perl5/perlbrew/perls/perl-5.14.0/lib/site_perl/5.14.0/Redis/Dump.pm
-          ctime    : 2011-07-05 19:56:54
-        POD content: yes
-        Last cpan version: 0.013
-
-        $ pmodinfo --hash Catalyst::Runtime DBIx::Class Data::Printer
-        {
-            'Catalyst::Runtime' => 5.80032,
-            'DBIx::Class' => 0.08192,
-            'Data::Printer' => 0.21,
-        };
-
-        $ pmodinfo -u
-        Algorithm::Diff local version: 1.1902, last version in cpan: 1.15
-        Any::Moose local version: 0.14, last version in cpan: 0.15
-        (...)
-        Do you need to update this modules now ? (y/n) [n]
+    version 0.09
 
 DESCRIPTION
     pmodinfo extracts information from the perl modules given the command

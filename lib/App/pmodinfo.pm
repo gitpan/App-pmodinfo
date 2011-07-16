@@ -12,7 +12,7 @@ use LWP::Simple;
 use ExtUtils::Installed;
 use File::Which qw(which);
 
-our $VERSION = '0.08'; # VERSION
+our $VERSION = '0.09'; # VERSION
 
 sub new {
     my $class = shift;
@@ -93,6 +93,8 @@ sub run {
 
     $self->show_help unless @{ $self->{argv} };
 
+    $self->ns_argv;
+
     print "{\n" if $self->{hash};
 
     for my $module ( @{ $self->{argv} } ) {
@@ -125,9 +127,37 @@ sub update_modules {
     exit 0;
 }
 
+sub ns_argv {
+    my $self = shift;
+    my @nargv;
+    my @installed = $self->installed_modules;
+
+    foreach my $arg ( @{ $self->{argv} } ) {
+        if ($arg =~ /::$/) {
+            my $mod = $arg;
+            $mod =~ s/::$//;
+            push( @nargv, $mod);
+        } else {
+            push( @nargv, $arg );
+        }
+    }
+
+    foreach my $mod (@installed) {
+        foreach my $arg ( @{ $self->{argv} } ) {
+            next unless $arg =~ /::$/;
+            next unless $mod =~ /^$arg/;
+            push( @nargv, $mod );
+        }
+    }
+
+    $self->{argv} = \@nargv;
+}
+
 sub check_installed_modules_for_update {
     my $self = shift;
     my @need_update;
+
+    $self->ns_argv;
 
     foreach my $module ( scalar( @{ $self->{argv} } ) ? @{ $self->{argv} } : $self->installed_modules ) {
         my ( $install, $meta ) = $self->check_module( $module, 0 );
@@ -190,12 +220,14 @@ sub prompt {
 sub show_installed_modules {
     my $self = shift;
 
-    foreach my $module ( $self->installed_modules ) {
+    $self->ns_argv;
+
+    foreach my $module ( scalar( @{ $self->{argv} } ) ? @{ $self->{argv} } : $self->installed_modules ) {
         my ( $install, $meta, $deprecated ) = $self->check_module( $module, 0 );
-            next unless $install;
-            print "$module version is " . $meta->version || undef;
-            print "(deprecated)" if defined($deprecated);
-            print ".\n";
+        next unless $install and $meta->version;
+        print "$module version is " . $meta->version;
+        print "(deprecated)" if defined($deprecated);
+        print ".\n";
     }
     exit 0;
 }
@@ -211,9 +243,9 @@ sub show_modules {
     my ( $self, $module ) = @_;
     my ( $install, $meta, $deprecated ) = $self->check_module( $module, 0 );
 
-    print "$module not found" and next unless $install;
+    print "$module not found.\n" and return unless $install and $meta->version;
 
-    print "$module version is " . $meta->version || undef;
+    print "$module version is " . $meta->version;
     print "(deprecated)" if defined($deprecated);
     print ".\n";
 
@@ -340,34 +372,7 @@ App::pmodinfo - Perl module info command line.
 
 =head1 VERSION
 
-version 0.08
-
-=head1 SYNOPSIS
-
-    $ pmodinfo Scalar::Util strict
-    Scalar::Util version is 1.23.
-    strict version is 1.04.
-
-    $ pmodinfo --full Redis::Dump
-    Redis::Dump version is 0.013.
-    cpan page  : http://search.cpan.org/dist/Redis-Dump
-    filename   : /Users/thiago/perl5/perlbrew/perls/perl-5.14.0/lib/site_perl/5.14.0/Redis/Dump.pm
-      ctime    : 2011-07-05 19:56:54
-    POD content: yes
-    Last cpan version: 0.013
-
-    $ pmodinfo --hash Catalyst::Runtime DBIx::Class Data::Printer
-    {
-        'Catalyst::Runtime' => 5.80032,
-        'DBIx::Class' => 0.08192,
-        'Data::Printer' => 0.21,
-    };
-
-    $ pmodinfo -u
-    Algorithm::Diff local version: 1.1902, last version in cpan: 1.15
-    Any::Moose local version: 0.14, last version in cpan: 0.15
-    (...)
-    Do you need to update this modules now ? (y/n) [n]
+version 0.09
 
 =head1 DESCRIPTION
 
