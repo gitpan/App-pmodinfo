@@ -39,7 +39,7 @@ my %WriteMakefileArgs = (
     'Module::Metadata' => '0',
     'Parse::CPAN::Meta' => '0'
   },
-  'VERSION' => '0.09',
+  'VERSION' => '0.10',
   'test' => {
     'TESTS' => 't/*.t'
   }

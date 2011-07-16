@@ -2,7 +2,7 @@ NAME
     App::pmodinfo - Perl module info command line.
 
 VERSION
-    version 0.09
+    version 0.10
 
 DESCRIPTION
     pmodinfo extracts information from the perl modules given the command

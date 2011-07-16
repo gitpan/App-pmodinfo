@@ -12,7 +12,7 @@ use LWP::Simple;
 use ExtUtils::Installed;
 use File::Which qw(which);
 
-our $VERSION = '0.09'; # VERSION
+our $VERSION = '0.10'; # VERSION
 
 sub new {
     my $class = shift;
@@ -109,6 +109,7 @@ sub run {
 sub show_modules_hash {
     my ( $self, $module ) = @_;
     my ( $install, $meta ) = $self->check_module( $module, 0 );
+    return unless $meta and $meta->version;
     my $version = $meta->version;
     print "\t'$module' => $version,\n" if $install;
 }
@@ -372,7 +373,7 @@ App::pmodinfo - Perl module info command line.
 
 =head1 VERSION
 
-version 0.09
+version 0.10
 
 =head1 DESCRIPTION
 
